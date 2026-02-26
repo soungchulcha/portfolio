@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neoantigen Discovery and TCR Validation | Soungchul Cha</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="site-logo">Soungchul Cha</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <article class="post-full container">
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime="2026-02-22">February 22, 2026</time>
+          <span class="reading-time">5 min read</span>
+        </div>
+        <h1 class="post-title">Neoantigen Discovery and TCR Validation: Bridging Bench to Bedside</h1>
+        <div class="post-tags">
+          <span class="tag tag-orange">Neoantigens</span>
+          <span class="tag tag-blue">TCR</span>
+          <span class="tag tag-green">Translational</span>
+        </div>
+      </header>
+
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <p>The promise of truly personalized cancer immunotherapy rests on our ability to identify the unique mutations in each patient's tumor and harness the immune system to target them. Neoantigen discovery — identifying tumor-specific mutated peptides that can be recognized by T cells — sits at the heart of this approach. My work has focused on building and validating the pipelines that make this possible.</p>
+
+          <h2>What Are Neoantigens?</h2>
+          <p>Every tumor accumulates somatic mutations as it grows. Some of these mutations alter protein sequences in ways that create novel peptides — neoantigens — that are presented on the tumor cell surface by MHC molecules. Because these peptides are absent from normal tissue, the immune system can potentially recognize them as foreign, making them ideal targets for immunotherapy.</p>
+          <p>The challenge is that:</p>
+          <ul>
+            <li>Not all mutations produce immunogenic neoantigens</li>
+            <li>MHC binding prediction alone is insufficient — we need functional validation</li>
+            <li>Each patient's neoantigen landscape is unique, requiring individualized pipelines</li>
+          </ul>
+
+          <h2>Building the Neoantigen Identification Pipeline</h2>
+          <p>Our neoantigen identification pipeline integrates multiple data streams:</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Approach</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1. Mutation calling</td>
+                <td>Whole-exome sequencing of tumor vs. normal</td>
+                <td>Identify somatic mutations</td>
+              </tr>
+              <tr>
+                <td>2. HLA typing</td>
+                <td>Patient-specific MHC class I/II determination</td>
+                <td>Predict which peptides can be presented</td>
+              </tr>
+              <tr>
+                <td>3. Peptide prediction</td>
+                <td>Computational MHC binding algorithms</td>
+                <td>Prioritize candidate neoantigens</td>
+              </tr>
+              <tr>
+                <td>4. Functional validation</td>
+                <td>T cell reactivity assays with patient PBMCs</td>
+                <td>Confirm immunogenicity</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>Critically, we validated this pipeline using patient tumor samples — not just cell lines or model systems. This real-world validation is what distinguishes a research tool from a clinically actionable platform.</p>
+
+          <h2>TCR Discovery Using Autologous B Cells</h2>
+          <p>One of the most innovative aspects of our approach has been developing <strong>TCR discovery systems using autologous B cells</strong> as antigen-presenting cells. Rather than relying on artificial systems or dendritic cells (which are labor-intensive to generate), we leveraged the patient's own B cells to present candidate neoantigens to T cells.</p>
+          <p>This approach offers several advantages:</p>
+          <ul>
+            <li><strong>Physiological antigen presentation</strong> — B cells naturally express MHC class I and II molecules</li>
+            <li><strong>Scalability</strong> — B cells can be expanded from peripheral blood</li>
+            <li><strong>Paired TCR identification</strong> — Reactive T cells can be isolated for TCR alpha/beta sequencing</li>
+            <li><strong>Functional validation</strong> — Direct confirmation that a TCR recognizes its cognate neoantigen</li>
+          </ul>
+
+          <h2>From Discovery to Therapy</h2>
+          <p>Validated TCR sequences have therapeutic potential far beyond biomarker applications. They can be used to:</p>
+          <ul>
+            <li>Engineer TCR-T cell therapies targeting patient-specific neoantigens</li>
+            <li>Monitor neoantigen-specific immune responses during treatment</li>
+            <li>Inform vaccine design by confirming which neoantigens elicit functional T cell responses</li>
+            <li>Track clonal dynamics of tumor-reactive T cells over time</li>
+          </ul>
+
+          <blockquote>
+            The goal is not just to find neoantigens — it's to prove they matter immunologically, and to use that knowledge to build better therapies for each individual patient.
+          </blockquote>
+
+          <h2>TLR7/8 Immunomodulator Vaccine Platform</h2>
+          <p>Extending this work, I have been driving preclinical programs for a TLR7/8 immunomodulator-based vaccine platform toward first-in-human trials. By combining neoantigen targets with potent innate immune agonists, we aim to enhance both the breadth and magnitude of antitumor T cell responses — a critical requirement for durable clinical benefit.</p>
+
+          <h2>The Path Ahead</h2>
+          <p>As sequencing costs continue to fall and computational prediction tools improve, neoantigen-based immunotherapy is becoming increasingly practical. The pipelines and validation systems we've built provide a framework for translating genomic data into personalized treatments — moving us closer to a future where every cancer patient receives a therapy designed specifically for their tumor.</p>
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-widget author-widget">
+            <div class="author-avatar"></div>
+            <h3>Soungchul Cha, PhD</h3>
+            <p>Staff Scientist at City of Hope. Immunologist advancing personalized cancer vaccines and cellular immunotherapies.</p>
+          </div>
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Recent Posts</h3>
+            <ul class="widget-list">
+              <li>
+                <a href="dna-vaccine-clinical-trial-immune-monitoring.html">Immune Monitoring for DNA Vaccine Clinical Trials in Lymphoma</a>
+                <time>Feb 26</time>
+              </li>
+              <li>
+                <a href="baff-r-car-t-cell-immune-monitoring.html">BAFF-R CAR T-Cell Therapy: Novel Immune Monitoring Platforms</a>
+                <time>Feb 24</time>
+              </li>
+              <li>
+                <a href="neoantigen-discovery-tcr-validation.html">Neoantigen Discovery and TCR Validation</a>
+                <time>Feb 22</time>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <nav class="post-navigation">
+        <a href="baff-r-car-t-cell-immune-monitoring.html" class="post-nav-prev">
+          <span>&larr; Previous</span>
+          <strong>BAFF-R CAR T-Cell Therapy: Novel Immune Monitoring Platforms</strong>
+        </a>
+        <div></div>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-links">
+        <a href="https://www.linkedin.com/in/soungchul-cha-b0252a32/" target="_blank" rel="noopener">linkedin</a>
+        <span class="sep">/</span>
+        <a href="https://github.com/soungchulcha" target="_blank" rel="noopener">github</a>
+        <span class="sep">/</span>
+        <a href="../cv.html">cv</a>
+      </nav>
+      <p>&copy; 2026 Soungchul Cha</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8679;</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
