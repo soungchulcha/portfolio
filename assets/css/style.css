@@ -351,6 +351,28 @@ img {
   gap: 0.35rem;
 }
 
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.github-link:hover {
+  color: var(--color-heading);
+  border-color: var(--color-heading);
+}
+
+.github-link svg {
+  flex-shrink: 0;
+}
+
 .read-more {
   font-size: 0.85rem;
   color: var(--color-accent);
