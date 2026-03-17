@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Assisted Detection of Vaccine-Targeted Lymphoma Idiotypes | Soungchul Cha</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="site-logo">Soungchul Cha</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <article class="post-full container">
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime="2026-03-15">March 15, 2026</time>
+          <span class="reading-time">8 min read</span>
+        </div>
+        <h1 class="post-title">AI-Assisted Detection of Vaccine-Targeted Lymphoma Idiotypes from Patient RNA Sequencing Data</h1>
+        <div class="post-tags">
+          <span class="tag tag-red">DNA Vaccines</span>
+          <span class="tag tag-blue">BCR Reconstruction</span>
+          <span class="tag tag-green">AI-Assisted</span>
+          <span class="tag tag-purple">Bulk RNA-seq</span>
+        </div>
+      </header>
+
+      <div class="post-content-wrapper">
+        <div class="post-content">
+
+          <h2>Objective</h2>
+          <p>The primary objective of this study is to determine whether an AI-assisted computational workflow using Claude-generated code can enable non&ndash;bioinformatics specialists to efficiently perform complex genomic analyses for identifying patient-specific lymphoma idiotype (Id) sequences from bulk RNA sequencing data. A major motivation for this project is to demonstrate that advanced bioinformatics analyses, which traditionally require extensive computational expertise and substantial time investment, can be executed rapidly and reproducibly with the assistance of AI-driven tools.</p>
+
+          <p>Specifically, we will evaluate whether Claude can be used to implement and run the TRUST4 algorithm (Song et al., <em>Nat Methods</em> 2021) to reconstruct B-cell receptor (BCR) sequences and identify the dominant lymphoma clonotype from bulk RNA-seq data derived from patient bone marrow samples. Importantly, the predicted BCR sequences will be compared with the patient-specific idiotype sequences that were previously selected as vaccine candidates through extensive wet-laboratory experimentation and clinical vaccine development.</p>
+
+          <p>By demonstrating that the same lymphoma idiotype sequences identified through labor-intensive experimental approaches can be recovered using an AI-assisted analysis of bulk RNA sequencing data, this study will provide proof-of-concept that AI-enabled computational workflows can substantially lower the technical barrier for translational cancer genomics. Successful completion of this project would establish Claude as a practical platform for executing complex bioinformatics pipelines and for accelerating the identification of patient-specific tumor immunoglobulin sequences relevant to personalized lymphoma vaccine development.</p>
+
+          <figure>
+            <img src="../assets/img/project1/fig-overview.png" alt="Schematic overview of AI-assisted computational workflow for detecting patient-specific lymphoma idiotypes">
+            <figcaption><strong>Figure 1.</strong> AI-assisted identification of lymphoma idiotypes from bulk RNA-seq data. Schematic overview of an AI-assisted computational workflow for detecting patient-specific lymphoma idiotypes. Bulk RNA sequencing data from purified bone marrow B cells were analyzed using the TRUST4 algorithm executed through Claude-generated code to reconstruct B-cell receptor (BCR) sequences and identify dominant lymphoma clonotypes. The predicted BCR idiotype sequences were compared with the idiotype sequences previously selected as personalized DNA vaccine targets through conventional wet-laboratory experimentation. Concordance between the predicted and vaccine-derived sequences demonstrates the feasibility of AI-assisted bioinformatics workflows for identifying lymphoma-specific immunoglobulin sequences.</figcaption>
+          </figure>
+
+          <h2>Methods</h2>
+          <p>Bone marrow samples were obtained from five patients who received personalized idiotype DNA vaccines. Bone marrow mononuclear cells (BMMCs) were isolated, and B cells were purified prior to sequencing. Bulk RNA sequencing was performed on the purified B-cell populations to capture immunoglobulin transcript repertoires.</p>
+
+          <p>Raw RNA-seq data were analyzed using the TRUST4 algorithm, executed through a computational pipeline generated and orchestrated using Claude-assisted code development. Claude was used to generate and implement scripts for running TRUST4, managing sequencing input files, and extracting reconstructed B-cell receptor (BCR) sequences.</p>
+
+          <p>For each patient, the predominant BCR sequence reconstructed by TRUST4 was identified and compared with the idiotype sequence encoded in the patient-specific Id-DNA vaccine administered in the clinical trial. This comparison served as a biological validation of the computational results and allowed us to evaluate whether Claude-assisted bioinformatics workflows can accurately identify lymphoma-specific BCR sequences from bulk RNA sequencing data.</p>
+
+          <p>To further validate the analytical pipeline, lymphoplasmacytic lymphoma/Waldenstr&ouml;m's macroglobulinemia (LPL/WM) cell lines, BCWM.1 and MWCL-1, were included as positive controls. Bulk RNA sequencing data generated from these cell lines were analyzed using the same TRUST4 pipeline to confirm that dominant BCR clonotypes could be reliably reconstructed from known lymphoma-derived B cells. As a negative control, B cells were isolated from peripheral blood mononuclear cells (PBMCs) obtained from healthy donors and subjected to bulk RNA sequencing and TRUST4 analysis. These control analyses were used to assess the specificity of the pipeline and to distinguish tumor-associated dominant clonotypes from the polyclonal BCR repertoires typically observed in healthy individuals.</p>
+
+          <h2>Results</h2>
+          <p>To evaluate the practical applicability of this analytical framework for researchers lacking formal bioinformatics training, especially when utilizing AI assistance from Claude, we employed the MWCL-1 LPL cell line as a positive control. As expected, TRUST4 analysis of bulk RNA sequencing (bulk RNA-seq) data revealed a highly clonal B-cell receptor (BCR) repertoire. A single dominant clonotype constituted 91.05% of the IGH sequences and 96.91% of the IGK/IGL sequences (Figure 1A). In contrast, normal B cells demonstrated a polyclonal repertoire, with the predominant clonotype accounting for only 4.03% of IGH sequences and 5.54% of IGK/IGL sequences (Figure 1B). These data demonstrate that bulk RNA sequencing-based BCR reconstruction can effectively differentiate monoclonal lymphoma cells from normal polyclonal B cells.</p>
+
+          <figure>
+            <img src="../assets/img/project1/fig1-clonal-vs-polyclonal.png" alt="TRUST4 analysis comparing clonal and polyclonal BCR repertoires">
+            <figcaption><strong>Figure 2.</strong> Bulk RNA-seq/TRUST4 analysis distinguishes clonal and polyclonal BCR repertoires. (A) TRUST4 analysis of bulk RNA-seq data from the MWCL-1 LPL cell line identified a highly dominant BCR clonotype, accounting for 91.05% of IGH and 96.91% of IGK/IGL sequences, consistent with a monoclonal lymphoma population. (B) In contrast, TRUST4 analysis of normal B-cell bulk RNA-seq data showed a polyclonal repertoire, with the top clonotype comprising only 4.03% of IGH and 5.54% of IGK/IGL sequences. These findings confirm the ability of bulk RNA-seq/TRUST4 analysis to distinguish malignant clonal B-cell populations from normal polyclonal B cells.</figcaption>
+          </figure>
+
+          <p>Having established the analytical framework for reconstructing lymphoma-derived immunoglobulin sequences from transcriptomic data, we next asked whether the patient-specific idiotype identified by single-cell profiling could be recovered concordantly from bulk RNA-seq. In patient LPL003, single-cell RNA-seq of tumor B cells identified a dominant B cell receptor (BCR) clonotype comprising 67.97% of all detected clonotypes, consistent with marked clonal expansion of the lymphoma population (Fig. 3A). This paired heavy- and light-chain variable region sequence was used for generation of the patient-specific idiotype vaccine. Analysis of matched bulk RNA-seq from the same sample using TRUST4 independently reconstructed the identical dominant VH and VL sequences (Fig. 3B). Amino acid alignment further demonstrated complete sequence concordance between the two approaches, with 100% identity across the heavy- and light-chain variable regions, including CDR1, CDR2 and CDR3 (Fig. 3C).</p>
+
+          <p>These findings show that AI-assisted analysis with Claude enables rapid and accurate identification of lymphoma-specific idiotype sequences from transcriptomic data, providing an accessible framework for personalized Id-vaccine design.</p>
+
+          <figure>
+            <img src="../assets/img/project1/fig2-lpl003-concordance.png" alt="Concordant identification of lymphoma-specific idiotype sequence in patient LPL003">
+            <figcaption><strong>Figure 3.</strong> Concordant identification of the lymphoma-specific idiotype sequence in patient LPL003 by single-cell and bulk RNA-seq analyses. (A) Single-cell RNA-seq identified a dominant BCR clonotype in LPL003 tumor B cells, representing 67.97% of total clonotypes; this paired VH/VL sequence was used for patient-specific Id vaccine generation. (B) Bulk RNA-seq analysis of the same sample using TRUST4 reconstructed the identical dominant VH and VL sequences. (C) Amino acid alignment of heavy- and light-chain variable regions from single-cell RNA-seq and bulk RNA-seq/TRUST4 showed 100% identity; red residues denote CDR1, CDR2 and CDR3.</figcaption>
+          </figure>
+
+          <h2>Discussion</h2>
+          <p>In summary, our study demonstrates that lymphoma-specific idiotype sequences can be accurately recovered from transcriptomic data using an AI-assisted analytical workflow built with Claude. By showing concordance between single-cell and bulk RNA-seq&ndash;based BCR reconstruction, these findings establish a practical framework for patient-specific Id-vaccine design. Notably, this approach can be implemented effectively even by investigators without formal bioinformatics training, substantially lowering the technical barrier to personalized vaccine development. More broadly, our results highlight the potential of AI-assisted bioinformatics to accelerate and democratize the translation of sequencing data into individualized immunotherapeutic strategies.</p>
+
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-widget author-widget">
+            <div class="author-avatar"><img src="../assets/img/headshot.jpg" alt="Soungchul Cha headshot"></div>
+            <h3>Soungchul Cha, PhD</h3>
+            <p>Staff Scientist at City of Hope. Immunologist advancing personalized cancer vaccines and cellular immunotherapies.</p>
+          </div>
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Recent Posts</h3>
+            <ul class="widget-list">
+              <li>
+                <a href="ai-assisted-lymphoma-idiotype-detection.html">AI-Assisted Detection of Lymphoma Idiotypes</a>
+                <time>Mar 15</time>
+              </li>
+              <li>
+                <a href="dna-vaccine-clinical-trial-immune-monitoring.html">Immune Monitoring for DNA Vaccine Clinical Trials</a>
+                <time>Feb 26</time>
+              </li>
+              <li>
+                <a href="baff-r-car-t-cell-immune-monitoring.html">BAFF-R CAR T-Cell Therapy</a>
+                <time>Feb 24</time>
+              </li>
+              <li>
+                <a href="neoantigen-discovery-tcr-validation.html">Neoantigen Discovery and TCR Validation</a>
+                <time>Feb 22</time>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-links">
+        <a href="https://www.linkedin.com/in/soungchul-cha-b0252a32/" target="_blank" rel="noopener">linkedin</a>
+        <span class="sep">/</span>
+        <a href="https://github.com/soungchulcha" target="_blank" rel="noopener">github</a>
+        <span class="sep">/</span>
+        <a href="../cv.html">cv</a>
+      </nav>
+      <p>&copy; 2026 Soungchul Cha</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8679;</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -39,9 +39,39 @@
   <!-- Blog Section -->
   <section class="blog-section" id="blog">
     <div class="container content-wrapper">
-      <div class="posts-grid">
+      <div class="posts-column">
+        <header class="section-header">
+          <h2 class="section-title">Principal Scientist Profile</h2>
+          <p class="section-subtitle">Immunologist and translational scientist with 20+ years in cancer vaccine development. Focused on neoantigen discovery, T-cell immunology, and immune assay design for next-generation vaccine platforms. Led bench-to-clinic translation of DNA and idiotype-based vaccines through Phase I/II trials, driving IND-enabling studies across cross-functional teams.</p>
+          <h3 class="section-subtitle-heading">AI-Assisted Multi-Omics Analysis for Non-Specialists</h3>
+          <p class="section-subtitle">Using AI-assisted workflows to independently run complex multi-omics analyses — from lymphoma target discovery to tumor microenvironment profiling.</p>
+        </header>
+        <div class="posts-grid">
 
-        <!-- Post Card 1 -->
+        <!-- Post Card: Project 1 (NEW) -->
+        <article class="post-card">
+          <div class="post-card-content">
+            <div class="post-meta">
+              <time datetime="2026-03-15">March 15, 2026</time>
+              <span class="reading-time">8 min read</span>
+            </div>
+            <h2 class="post-card-title">
+              <a href="posts/ai-assisted-lymphoma-idiotype-detection.html">AI-Assisted Detection of Vaccine-Targeted Lymphoma Idiotypes from Patient RNA Sequencing Data</a>
+            </h2>
+            <p class="post-card-excerpt">Using Claude-generated code and the TRUST4 algorithm to reconstruct B-cell receptor sequences from bulk RNA-seq and identify dominant lymphoma clonotypes — matching the same idiotype sequences previously found through months of wet-lab work for personalized DNA vaccine development.</p>
+            <div class="post-card-footer">
+              <div class="post-card-tags">
+                <span class="tag tag-red">DNA Vaccines</span>
+                <span class="tag tag-blue">BCR Reconstruction</span>
+                <span class="tag tag-green">AI-Assisted</span>
+                <span class="tag tag-purple">Bulk RNA-seq</span>
+              </div>
+              <a href="posts/ai-assisted-lymphoma-idiotype-detection.html" class="read-more">Read More</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post Card: Original 1 -->
         <article class="post-card">
           <div class="post-card-content">
             <div class="post-meta">
@@ -63,7 +93,7 @@
           </div>
         </article>
 
-        <!-- Post Card 2 -->
+        <!-- Post Card: Original 2 -->
         <article class="post-card">
           <div class="post-card-content">
             <div class="post-meta">
@@ -85,7 +115,7 @@
           </div>
         </article>
 
-        <!-- Post Card 3 -->
+        <!-- Post Card: Original 3 -->
         <article class="post-card">
           <div class="post-card-content">
             <div class="post-meta">
@@ -107,37 +137,30 @@
           </div>
         </article>
 
+        </div>
       </div>
 
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="sidebar-widget author-widget">
-          <div class="author-avatar"></div>
+          <div class="author-avatar"><img src="assets/img/headshot.jpg" alt="Soungchul Cha headshot"></div>
           <h3>Soungchul Cha, PhD</h3>
           <p>Staff Scientist at City of Hope. Immunologist advancing personalized cancer vaccines and cellular immunotherapies.</p>
-        </div>
-
-        <div class="sidebar-widget">
-          <h3 class="widget-title">Featured Posts</h3>
-          <ul class="widget-list">
-            <li>
-              <a href="posts/dna-vaccine-clinical-trial-immune-monitoring.html">Immune Monitoring for DNA Vaccine Clinical Trials</a>
-            </li>
-            <li>
-              <a href="posts/baff-r-car-t-cell-immune-monitoring.html">BAFF-R CAR T-Cell Therapy</a>
-            </li>
-          </ul>
         </div>
 
         <div class="sidebar-widget">
           <h3 class="widget-title">Recent Posts</h3>
           <ul class="widget-list">
             <li>
-              <a href="posts/dna-vaccine-clinical-trial-immune-monitoring.html">Immune Monitoring for DNA Vaccine Clinical Trials in Lymphoma</a>
+              <a href="posts/ai-assisted-lymphoma-idiotype-detection.html">AI-Assisted Detection of Lymphoma Idiotypes</a>
+              <time>Mar 15</time>
+            </li>
+            <li>
+              <a href="posts/dna-vaccine-clinical-trial-immune-monitoring.html">Immune Monitoring for DNA Vaccine Clinical Trials</a>
               <time>Feb 26</time>
             </li>
             <li>
-              <a href="posts/baff-r-car-t-cell-immune-monitoring.html">BAFF-R CAR T-Cell Therapy: Novel Immune Monitoring Platforms</a>
+              <a href="posts/baff-r-car-t-cell-immune-monitoring.html">BAFF-R CAR T-Cell Therapy</a>
               <time>Feb 24</time>
             </li>
             <li>
@@ -148,24 +171,16 @@
         </div>
 
         <div class="sidebar-widget">
-          <h3 class="widget-title">Categories</h3>
-          <ul class="widget-list categories-list">
-            <li><a href="#">Cancer Vaccines <span class="count">(1)</span></a></li>
-            <li><a href="#">CAR-T Therapy <span class="count">(1)</span></a></li>
-            <li><a href="#">Neoantigen Discovery <span class="count">(1)</span></a></li>
-          </ul>
-        </div>
-
-        <div class="sidebar-widget">
           <h3 class="widget-title">Tags</h3>
           <div class="tag-cloud">
-            <span class="tag tag-purple">CAR-T</span>
-            <span class="tag tag-blue">Clinical Trials</span>
             <span class="tag tag-red">DNA Vaccines</span>
-            <span class="tag tag-green">Immune Monitoring</span>
+            <span class="tag tag-blue">BCR Reconstruction</span>
+            <span class="tag tag-green">AI-Assisted</span>
+            <span class="tag tag-purple">Bulk RNA-seq</span>
+            <span class="tag tag-purple">CAR-T</span>
             <span class="tag tag-red">Immunotherapy</span>
-            <span class="tag tag-orange">Neoantigens</span>
             <span class="tag tag-teal">Single-Cell</span>
+            <span class="tag tag-orange">Neoantigens</span>
             <span class="tag tag-blue">TCR</span>
             <span class="tag tag-green">Translational</span>
           </div>
