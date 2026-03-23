@@ -6,6 +6,12 @@
   <title>WES + RNA-seq Integrated Mutation Analysis for LPL/WM | Soungchul Cha</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
+    /* Fullscreen image modal */
+    .img-modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:9999; cursor:zoom-out; justify-content:center; align-items:center; }
+    .img-modal-overlay.active { display:flex; }
+    .img-modal-overlay img { max-width:95%; max-height:95%; object-fit:contain; border-radius:4px; }
+    .clickable-img { cursor:zoom-in; transition: box-shadow 0.2s; }
+    .clickable-img:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
     .pipeline-steps { margin: 30px 0; }
     .p-step { background: #f8f9ff; border-left: 4px solid #1565c0; padding: 18px 22px; margin: 18px 0; border-radius: 0 10px 10px 0; }
     .p-step.green { border-left-color: #2e7d32; }
@@ -153,7 +159,7 @@ Right panel: RNA-seq confirmed Pre|Post interleaved (6 patients)</div>
 
           <h2>Final Result</h2>
           <figure>
-            <img src="../assets/img/wes-rnaseq-oncoplot.png" alt="Integrated WES + RNA-seq Mutation Analysis Oncoplot" style="max-width:100%;">
+            <img src="../assets/img/wes-rnaseq-oncoplot.png" alt="Integrated WES + RNA-seq Mutation Analysis Oncoplot" style="max-width:100%;" class="clickable-img" onclick="openModal(this.src)">
             <figcaption><strong>Figure 1.</strong> Integrated WES + RNA-seq mutation analysis. Left panel: somatic mutations identified by WES across 8 LPL/WM patients. Right panel: WES mutations confirmed by pre-treatment and post-treatment RNA-seq data for 6 patients, shown as interleaved Pre|Post columns per patient. Mutation types are color-coded: missense (blue), nonsense (red), frame shift (orange), in-frame (green), splice site (dark green), and multi-hit (black).</figcaption>
           </figure>
 
@@ -214,6 +220,23 @@ Right panel: RNA-seq confirmed Pre|Post interleaved (6 patients)</div>
     </div>
   </footer>
 
+  <!-- Fullscreen image modal -->
+  <div class="img-modal-overlay" id="imgModal" onclick="closeModal()">
+    <img id="imgModalImg" src="" alt="Fullscreen view">
+  </div>
+
+  <script>
+    function openModal(src) {
+      document.getElementById('imgModalImg').src = src;
+      document.getElementById('imgModal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('imgModal').classList.remove('active');
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>
