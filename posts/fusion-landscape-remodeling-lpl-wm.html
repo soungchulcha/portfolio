@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fusion Landscape Remodeling in LPL/WM | Soungchul Cha</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f8f9fa; color: #333; line-height: 1.7; }
+
+  .header { background: linear-gradient(135deg, #b71c1c 0%, #c62828 40%, #e53935 100%); color: white; padding: 50px 20px; text-align: center; }
+  .header h1 { font-size: 2.2em; margin-bottom: 8px; }
+  .header p { font-size: 1.1em; opacity: 0.9; max-width: 750px; margin: 0 auto; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+
+  .step-card { background: white; border-radius: 14px; box-shadow: 0 3px 15px rgba(0,0,0,0.07); margin: 28px 0; overflow: hidden; border-left: 5px solid #c62828; }
+  .step-card.blue { border-left-color: #1565c0; }
+  .step-card.green { border-left-color: #2e7d32; }
+  .step-card.orange { border-left-color: #e65100; }
+  .step-card.purple { border-left-color: #6a1b9a; }
+  .step-card.teal { border-left-color: #00695c; }
+
+  .step-header { padding: 20px 25px 5px; display: flex; align-items: center; gap: 15px; }
+  .step-number { background: #c62828; color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2em; font-weight: bold; flex-shrink: 0; }
+  .step-card.blue .step-number { background: #1565c0; }
+  .step-card.green .step-number { background: #2e7d32; }
+  .step-card.orange .step-number { background: #e65100; }
+  .step-card.purple .step-number { background: #6a1b9a; }
+  .step-card.teal .step-number { background: #00695c; }
+  .step-header h2 { font-size: 1.3em; color: #1a237e; }
+
+  .step-body { padding: 10px 25px 25px; }
+  .step-body p { margin: 8px 0; color: #444; }
+
+  .code-block { background: #263238; color: #a5d6a7; padding: 16px 20px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.86em; line-height: 1.9; margin: 12px 0; overflow-x: auto; white-space: pre-wrap; }
+  .code-block .cmd { color: #80cbc4; font-weight: bold; }
+  .code-block .file { color: #ef9a9a; }
+  .code-block .comment { color: #78909c; font-style: italic; }
+  .code-block .param { color: #ffd54f; }
+
+  .detail-box { background: #e8eaf6; border-radius: 8px; padding: 14px 18px; margin: 12px 0; }
+  .detail-box h4 { color: #283593; margin-bottom: 6px; }
+  .detail-box ul { margin-left: 20px; }
+  .detail-box li { margin: 4px 0; font-size: 0.92em; color: #444; }
+
+  .tool-tags { margin: 10px 0; }
+  .tool-tag { display: inline-block; padding: 3px 12px; border-radius: 14px; font-size: 0.82em; margin: 3px 4px 3px 0; font-weight: 600; }
+  .tool-tag.red { background: #fce4ec; color: #c62828; }
+  .tool-tag.blue { background: #e3f2fd; color: #1565c0; }
+  .tool-tag.green { background: #e8f5e9; color: #2e7d32; }
+  .tool-tag.orange { background: #fff3e0; color: #e65100; }
+  .tool-tag.purple { background: #f3e5f5; color: #6a1b9a; }
+  .tool-tag.teal { background: #e0f2f1; color: #00695c; }
+
+  .insight { background: #fff8e1; border-left: 4px solid #f9a825; padding: 15px 20px; margin: 18px 0; border-radius: 0 8px 8px 0; }
+  .insight strong { color: #e65100; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin: 15px 0; }
+  th { background: #c62828; color: white; padding: 10px 14px; text-align: left; }
+  td { padding: 9px 14px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) { background: #fef5f5; }
+  tr:hover { background: #fce4ec; }
+
+  .flow-diagram { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; margin: 25px 0; }
+  .flow-step { background: white; border: 2px solid #c62828; border-radius: 10px; padding: 10px 16px; text-align: center; font-size: 0.85em; min-width: 110px; }
+  .flow-step.s1 { background: #e3f2fd; border-color: #1565c0; }
+  .flow-step.s2 { background: #e8f5e9; border-color: #2e7d32; }
+  .flow-step.s3 { background: #fff3e0; border-color: #e65100; }
+  .flow-step.s4 { background: #f3e5f5; border-color: #6a1b9a; }
+  .flow-step.s5 { background: #e0f2f1; border-color: #00695c; }
+  .flow-step.s6 { background: #fce4ec; border-color: #c62828; }
+  .flow-arrow { font-size: 1.4em; color: #999; }
+
+  .section-title { font-size: 1.5em; color: #b71c1c; margin: 35px 0 15px; padding-bottom: 8px; border-bottom: 3px solid #c62828; }
+
+  .figure-container { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 25px; margin: 25px 0; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .figure-container h3 { color: #b71c1c; margin-bottom: 15px; font-size: 1.2em; }
+  .figure-container img { max-width: 100%; border-radius: 6px; cursor: zoom-in; transition: box-shadow 0.2s; }
+  .figure-container img:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+  .figure-container .caption { font-size: 0.88em; color: #666; margin-top: 12px; line-height: 1.5; }
+
+  .flow-data { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin: 20px 0; }
+  .flow-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 10px 0; }
+  .flow-box { border: 2px solid #1565c0; border-radius: 8px; padding: 10px 16px; text-align: center; min-width: 130px; font-size: 0.85em; }
+  .flow-box.b { background: #e3f2fd; }
+  .flow-box.g { background: #e8f5e9; border-color: #2e7d32; }
+  .flow-box.o { background: #fff3e0; border-color: #e65100; }
+  .flow-box.p { background: #f3e5f5; border-color: #6a1b9a; }
+  .flow-box.r { background: #fce4ec; border-color: #c62828; }
+  .flow-box.t { background: #e0f2f1; border-color: #00695c; }
+  .flow-box.dark { background: #263238; border-color: #455a64; color: white; }
+  .flow-arrow-down { text-align: center; font-size: 1.8em; color: #999; margin: 4px 0; }
+
+  .img-modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:9999; cursor:zoom-out; justify-content:center; align-items:center; }
+  .img-modal-overlay.active { display:flex; }
+  .img-modal-overlay img { max-width:95%; max-height:95%; object-fit:contain; }
+
+  footer { text-align: center; padding: 30px; color: #999; font-size: 0.85em; margin-top: 40px; border-top: 1px solid #e0e0e0; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="site-logo">Soungchul Cha</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../assets/pdf/CHA-CV-2025.pdf" target="_blank" rel="noopener">CV</a>
+        <a href="../assets/pdf/CHA-resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <article class="post-full container">
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime="2026-03-24">March 24, 2026</time>
+          <span class="reading-time">15 min read</span>
+        </div>
+        <h1 class="post-title">AI-assisted bulk RNA-seq analysis reveals fusion landscape remodeling following personalized neoantigen vaccination in lymphoplasmacytic lymphoma/Waldenström macroglobulinemia</h1>
+        <div class="post-tags">
+          <span class="tag tag-red">Gene Fusion</span>
+          <span class="tag tag-blue">RNA-seq</span>
+          <span class="tag tag-purple">LPL/WM</span>
+          <span class="tag tag-green">Arriba</span>
+        </div>
+      </header>
+
+      <div class="post-content-wrapper">
+        <div class="post-content">
+
+
+<div class="header">
+  <h1>AI-assisted bulk RNA-seq analysis reveals fusion landscape remodeling following personalized neoantigen vaccination in lymphoplasmacytic lymphoma/Waldenstr&ouml;m macroglobulinemia</h1>
+  <p>Complete pipeline from RNA-seq BAMs to the final fusion heatmap &mdash; identifying novel gene fusions and tracking treatment-induced changes in LPL/WM patients</p>
+</div>
+
+<div class="container">
+
+<!-- ── ABSTRACT ── -->
+<h2 class="section-title">Abstract</h2>
+
+<div style="background:white; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.06); padding:25px 30px; margin:15px 0; line-height:1.9; font-size:1.02em; color:#333;">
+  <p style="margin-bottom:14px;">Lymphoplasmacytic lymphoma/Waldenstr&ouml;m macroglobulinemia (LPL/WM) is a molecularly heterogeneous B-cell malignancy, but how immunotherapy influences fusion transcript dynamics remains unknown. Here, we used an AI-assisted bulk RNA-seq workflow to characterize fusion landscape remodeling in paired pre- and post-vaccination bone marrow samples from six patients with LPL/WM following personalized neoantigen vaccination. The workflow integrated chimeric re-alignment, Arriba-based fusion detection, confidence filtering, longitudinal comparison and downstream visualization in a reproducible analytical framework.</p>
+
+  <p style="margin-bottom:14px;">Fusion analysis revealed marked inter-patient heterogeneity and dynamic post-treatment remodeling, with post-treatment fusion events outnumbering those detected only before treatment. Several candidate post-treatment fusions involved genes linked to B-cell signalling, apoptosis, RNA splicing, chromatin regulation and antigen presentation, suggesting possible associations with clonal selection, transcriptomic adaptation and immune evasion. Cohort-level heatmaps and exon-level coverage analyses supported the robustness of these events and revealed distinct patient-specific trajectories of fusion evolution.</p>
+
+  <p>These findings identify treatment-associated fusion landscape remodeling in LPL/WM and illustrate the practical value of AI-assisted bioinformatics for translational genomics. More broadly, this study provides proof of concept that AI-guided analytical workflows can enable non-specialist investigators to perform reproducible and clinically informative transcriptomic analyses.</p>
+</div>
+
+<!-- ── OVERVIEW ── -->
+<h2 class="section-title">Pipeline Overview</h2>
+
+<div class="flow-diagram">
+  <div class="flow-step s1"><strong>Step 1</strong><br>Pre-requisite<br>RNA-seq BAMs</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-step s2"><strong>Step 2</strong><br>STAR Chimeric<br>Re-alignment</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-step s3"><strong>Step 3</strong><br>Arriba Fusion<br>Calling</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-step s4"><strong>Step 4</strong><br>Confidence<br>Filtering</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-step s5"><strong>Step 5</strong><br>Pre vs Post<br>Comparison</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-step s6"><strong>Step 6</strong><br>Figure 3i<br>Heatmap</div>
+</div>
+
+<!-- ── STEP 1 ── -->
+<div class="step-card blue">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <h2>Pre-requisite: RNA-seq BAM Files</h2>
+  </div>
+  <div class="step-body">
+    <p>Gene fusion calling requires aligned RNA-seq BAMs. These were generated in the WES + RNA-seq integration pipeline using STAR 2-pass alignment.</p>
+
+    <div class="detail-box">
+      <h4>12 Input BAMs (6 patients &times; Pre/Post)</h4>
+      <ul>
+        <li><strong>Patient 1:</strong> COHP_68593 (Pre), COHP_68594 (Post)</li>
+        <li><strong>Patient 2:</strong> COHP_68563 (Pre), COHP_68564 (Post)</li>
+        <li><strong>Patient 3:</strong> COHP_68566 (Pre), COHP_68567 (Post)</li>
+        <li><strong>Patient 4:</strong> COHP_68569 (Pre), COHP_68570 (Post)</li>
+        <li><strong>Patient 8:</strong> COHP_68596 (Pre), COHP_68597 (Post)</li>
+        <li><strong>Patient 9:</strong> COHP_68572 (Pre), COHP_68573 (Post)</li>
+      </ul>
+    </div>
+
+    <p><strong>Location:</strong> Modal volume <code>output-result</code> at <code>/results/WES_BulKrna Intergrate/_rnaseq/{COHP_ID}/rna.sorted.bam</code></p>
+
+    <div class="tool-tags">
+      <span class="tool-tag blue">STAR v2.7.11b</span>
+      <span class="tool-tag blue">samtools v1.21</span>
+      <span class="tool-tag blue">BAM sizes: 5.1 &ndash; 9.1 GB</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── STEP 2 ── -->
+<div class="step-card green">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <h2>STAR Chimeric Re-alignment</h2>
+  </div>
+  <div class="step-body">
+    <p>Arriba requires chimeric read information that wasn't in the original STAR alignment. Each BAM is converted back to FASTQ, then re-aligned with chimeric junction output enabled.</p>
+
+    <div class="code-block"><span class="comment"># Extract reads from existing BAM</span>
+<span class="cmd">samtools</span> sort -n -@ 4 rna.sorted.bam | <span class="cmd">samtools</span> fastq -1 R1.fastq.gz -2 R2.fastq.gz
+
+<span class="comment"># Re-align with chimeric output for Arriba</span>
+<span class="cmd">STAR</span> --runThreadN 16 \
+     --genomeDir <span class="file">/ref/star_index</span> \
+     --readFilesIn R1.fastq.gz R2.fastq.gz \
+     --outSAMtype BAM Unsorted \
+     <span class="param">--chimSegmentMin 10</span> \
+     <span class="param">--chimOutType WithinBAM HardClip</span> \
+     --chimJunctionOverhangMin 10 \
+     --chimScoreDropMax 30 \
+     --chimScoreSeparation 1 \
+     --chimSegmentReadGapMax 3 \
+     --chimMultimapNmax 50 \
+     --outFilterMultimapNmax 50 \
+     --peOverlapNbasesMin 10 \
+     --sjdbGTFfile <span class="file">gencode.v44.annotation.gtf</span></div>
+
+    <div class="detail-box">
+      <h4>Key Chimeric Parameters</h4>
+      <ul>
+        <li><code>--chimSegmentMin 10</code> &mdash; minimum length of chimeric segment</li>
+        <li><code>--chimOutType WithinBAM HardClip</code> &mdash; embed chimeric reads in BAM (required by Arriba)</li>
+        <li><code>--chimScoreSeparation 1</code> &mdash; allow closely scoring chimeric alignments</li>
+        <li><code>--chimMultimapNmax 50</code> &mdash; allow multi-mapped chimeric reads</li>
+      </ul>
+    </div>
+
+    <p><strong>Resources:</strong> 16 CPU, 64 GB RAM, ~50&ndash;80 min per sample</p>
+
+    <div class="tool-tags">
+      <span class="tool-tag green">STAR v2.7.11b</span>
+      <span class="tool-tag green">samtools v1.21</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── STEP 3 ── -->
+<div class="step-card orange">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <h2>Arriba Gene Fusion Calling</h2>
+  </div>
+  <div class="step-body">
+    <p>Arriba detects gene fusions from chimeric reads in the STAR BAM output. It uses a blacklist to filter known artifacts and a database of known fusions for confidence scoring.</p>
+
+    <div class="code-block"><span class="cmd">arriba</span> \
+    -x <span class="file">Aligned.out.bam</span> \
+    -g <span class="file">gencode.v44.annotation.gtf</span> \
+    -a <span class="file">Homo_sapiens_assembly38.fasta</span> \
+    -b <span class="file">blacklist_hg38_GRCh38_v2.4.0.tsv.gz</span> \
+    -k <span class="file">known_fusions_hg38_GRCh38_v2.4.0.tsv.gz</span> \
+    -p <span class="file">protein_domains_hg38_GRCh38_v2.4.0.gff3</span> \
+    -o <span class="file">fusions.tsv</span> \
+    -O <span class="file">fusions_discarded.tsv</span></div>
+
+    <div class="detail-box">
+      <h4>Arriba Databases</h4>
+      <ul>
+        <li><strong>Blacklist:</strong> Known artifacts, read-through events, pseudogenes (hg38 v2.4.0)</li>
+        <li><strong>Known fusions:</strong> Curated database of validated oncogenic fusions</li>
+        <li><strong>Protein domains:</strong> Domain annotations for functional impact assessment</li>
+      </ul>
+    </div>
+
+    <div class="detail-box">
+      <h4>Arriba Output Fields</h4>
+      <ul>
+        <li><code>#gene1</code>, <code>gene2</code> &mdash; fusion partner gene names</li>
+        <li><code>breakpoint1</code>, <code>breakpoint2</code> &mdash; genomic coordinates</li>
+        <li><code>split_reads1</code>, <code>split_reads2</code> &mdash; junction reads</li>
+        <li><code>discordant_mates</code> &mdash; spanning reads</li>
+        <li><code>confidence</code> &mdash; high / medium / low</li>
+        <li><code>reading_frame</code> &mdash; in-frame / out-of-frame / stop-codon</li>
+        <li><code>type</code> &mdash; translocation / deletion / duplication / inversion</li>
+      </ul>
+    </div>
+
+    <p><strong>Execution:</strong> 12 samples processed in batches of 4 on Modal (16 CPU, 64 GB RAM each)</p>
+
+    <div class="tool-tags">
+      <span class="tool-tag orange">Arriba v2.4.0</span>
+      <span class="tool-tag orange">hg38 blacklist</span>
+      <span class="tool-tag orange">known fusions DB</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── STEP 3 RESULTS ── -->
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-number">&#10003;</div>
+    <h2>Raw Fusion Calling Results</h2>
+  </div>
+  <div class="step-body">
+    <table>
+      <tr><th>Patient</th><th>Pre Fusions</th><th>Post Fusions</th><th>Change</th><th>Response</th></tr>
+      <tr><td>Patient 1</td><td>31</td><td>13</td><td>&darr; 18</td><td>SD</td></tr>
+      <tr><td>Patient 2</td><td>15</td><td>16</td><td>&uarr; 1</td><td>SD</td></tr>
+      <tr><td>Patient 3</td><td>21</td><td>29</td><td>&uarr; 8</td><td>SD</td></tr>
+      <tr><td>Patient 4</td><td>14</td><td>4</td><td>&darr; 10</td><td>SD</td></tr>
+      <tr><td>Patient 8</td><td>12</td><td>4</td><td>&darr; 8</td><td>SD</td></tr>
+      <tr><td>Patient 9</td><td>11</td><td>11</td><td>&mdash; 0</td><td>PD</td></tr>
+    </table>
+    <p><strong>Total:</strong> 140 unique fusion events across all 12 samples (all confidence levels)</p>
+  </div>
+</div>
+
+<!-- ── STEP 4 ── -->
+<div class="step-card purple">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <h2>Confidence Filtering</h2>
+  </div>
+  <div class="step-body">
+    <p>Filter to retain only <strong>high</strong> and <strong>medium</strong> confidence fusions, removing likely artifacts (low confidence).</p>
+
+    <div class="code-block"><span class="comment"># Filter criteria</span>
+for each fusion in all_fusions:
+    if fusion.confidence in (<span class="param">"high"</span>, <span class="param">"medium"</span>):
+        keep  <span class="comment"># retain for analysis</span>
+    else:
+        discard  <span class="comment"># likely artifact</span>
+
+<span class="comment"># Result</span>
+140 total fusions <span class="param">&rarr;</span> <span class="file">35 high+medium confidence fusions</span></div>
+
+    <div class="detail-box">
+      <h4>Confidence Level Criteria (Arriba)</h4>
+      <ul>
+        <li><strong style="color:#D32F2F">High:</strong> Multiple supporting reads, known fusion database match, exon boundary breakpoint, no blacklist overlap</li>
+        <li><strong style="color:#F57C00">Medium:</strong> Supporting reads present but fewer, breakpoint may not align to exon boundary, not in known DB but no artifact characteristics</li>
+        <li><strong style="color:#FDD835">Low (filtered out):</strong> Very few supporting reads (1&ndash;2), possible read-through, pseudogene, or repeat-associated artifact</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── STEP 5 ── -->
+<div class="step-card teal">
+  <div class="step-header">
+    <div class="step-number">5</div>
+    <h2>Pre vs Post Treatment Comparison</h2>
+  </div>
+  <div class="step-body">
+    <p>For each high+medium confidence fusion, classify whether it was detected in Pre-treatment only, Post-treatment only, or both timepoints.</p>
+
+    <div class="code-block"><span class="comment"># Classification per fusion per patient</span>
+for each fusion in filtered_fusions:
+    for each patient:
+        in_pre  = fusion detected in Pre-treatment RNA-seq
+        in_post = fusion detected in Post-treatment RNA-seq
+
+        if in_pre AND in_post:   status = <span class="param">"Both"</span>       <span class="comment"># persistent</span>
+        elif in_pre only:        status = <span class="param">"Pre-only"</span>   <span class="comment"># lost after treatment</span>
+        elif in_post only:       status = <span class="param">"Post-only"</span>  <span class="comment"># gained after treatment</span>
+
+<span class="comment"># Results</span>
+Pre-only:  <span class="file">11 events</span>  (expression lost post-treatment)
+Post-only: <span class="file">20 events</span>  (expression gained post-treatment)
+Both:      <span class="file">5 events</span>   (persistent across treatment)</div>
+
+    <div class="insight">
+      <strong>Critical Finding:</strong> 20 fusion events appeared <strong>only after treatment</strong> (Post-only), compared to 11 that were lost. This suggests treatment-induced genomic instability or clonal selection in a subset of patients. Notably, all top 5 biologically significant fusions (PRKCI&ndash;IGKJ4, BCL2L11&ndash;PTMA, SF1&ndash;SF3B1, TNRC6B&ndash;EP300, CIITA&ndash;SNN) emerged post-treatment.
+    </div>
+  </div>
+</div>
+
+<!-- ── STEP 6 ── -->
+<div class="step-card">
+  <div class="step-header">
+    <div class="step-number">6</div>
+    <h2>Figure 3i: Pre vs Post Fusion Heatmap Generation</h2>
+  </div>
+  <div class="step-body">
+    <p>Generate a publication-quality heatmap showing all 35 high+medium confidence fusions across 12 samples (6 patients &times; Pre/Post).</p>
+
+    <div class="code-block"><span class="comment"># Build heatmap matrix</span>
+X-axis: P1-Pre, P1-Post, P2-Pre, P2-Post, ... P9-Pre, P9-Post (12 columns)
+Y-axis: 35 gene fusions sorted by detection frequency
+
+<span class="comment"># Color encoding</span>
+<span style="color:#ef9a9a">Red box</span>    = High confidence fusion (number = supporting reads)
+<span style="color:#FFB74D">Orange box</span>  = Medium confidence fusion
+<span style="color:#e0e0e0">Gray box</span>   = Not detected
+<span class="comment">Numbers inside boxes = split_reads1 + split_reads2 + discordant_mates</span>
+
+<span class="comment"># Render with matplotlib</span>
+<span class="cmd">matplotlib</span> Rectangle patches + text annotations
+Vertical separator lines between patient Pre|Post pairs
+Font sizes: X-axis 16pt, Y-axis 14pt, box numbers 10pt bold</div>
+
+    <div class="detail-box">
+      <h4>Heatmap Design Choices</h4>
+      <ul>
+        <li>Fusions sorted by detection frequency (most recurrent at top)</li>
+        <li>Supporting read counts displayed inside each box for evidence strength</li>
+        <li>Vertical gray lines separate Pre/Post pairs per patient for easy comparison</li>
+        <li>High confidence fusions (red) are visually distinct from medium (orange)</li>
+        <li>Column width reduced to 70% for compact A4-friendly layout</li>
+      </ul>
+    </div>
+
+    <div class="tool-tags">
+      <span class="tool-tag red">matplotlib</span>
+      <span class="tool-tag red">pandas</span>
+      <span class="tool-tag red">numpy</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINAL FIGURE ── -->
+<div class="figure-container">
+  <h3>Final Result: Figure 3i &mdash; Gene Fusions Pre vs Post Treatment</h3>
+  <img src="../assets/img/fusion-analysis/figure_3i_V6.png" alt="Figure 1: Gene Fusions Pre-treatment vs Post-treatment RNA-seq Heatmap" onclick="openModal(this.src)">
+  <div class="caption">
+    <strong>Figure 1.</strong> Gene fusion detection across pre-treatment and post-treatment RNA-seq samples for 6 LPL/WM patients. Only high and medium confidence fusions (35 total) are displayed. Red = high confidence, orange = medium confidence, gray = not detected. Numbers indicate supporting reads (junction + spanning). Vertical lines separate Pre|Post pairs per patient. All top 5 biologically significant fusions (PRKCI&ndash;IGKJ4, BCL2L11&ndash;PTMA, SF1&ndash;SF3B1, TNRC6B&ndash;EP300, CIITA&ndash;SNN) appeared exclusively in post-treatment samples.
+  </div>
+</div>
+
+<!-- ── TOP FUSIONS ── -->
+<h2 class="section-title">Top 5 Biologically Significant Fusions</h2>
+
+<table>
+  <tr><th>Rank</th><th>Fusion</th><th>Patient</th><th>Timepoint</th><th>Biological Significance</th></tr>
+  <tr><td>1</td><td><strong>PRKCI&ndash;IGKJ4</strong></td><td>P2</td><td>Post-only</td><td>IG locus translocation with NF-&kappa;B pathway oncogene (30 supporting reads)</td></tr>
+  <tr><td>2</td><td><strong>BCL2L11&ndash;PTMA</strong></td><td>P3</td><td>Post-only</td><td>BIM (pro-apoptotic) disruption &rarr; apoptosis resistance mechanism</td></tr>
+  <tr><td>3</td><td><strong>SF1&ndash;SF3B1</strong></td><td>P3</td><td>Post-only</td><td>SF3B1 mutated in 5&ndash;10% of WM; in-frame splicing factor fusion</td></tr>
+  <tr><td>4</td><td><strong>TNRC6B&ndash;EP300</strong></td><td>P9 (PD)</td><td>Post-only</td><td>EP300 tumor suppressor disruption (known in DLBCL/FL)</td></tr>
+  <tr><td>5</td><td><strong>CIITA&ndash;SNN</strong></td><td>P2</td><td>Post-only</td><td>MHC-II transactivator rearrangement &rarr; immune evasion</td></tr>
+</table>
+
+<div class="insight">
+  <strong>Key Observation:</strong> All top 5 biologically significant fusions appeared exclusively post-treatment. This pattern suggests either clonal selection under treatment pressure or treatment-induced genomic instability. The emergence of BCL2L11 disruption (apoptosis resistance) and CIITA rearrangement (immune evasion) post-vaccination is particularly noteworthy for understanding vaccine resistance mechanisms.
+</div>
+
+<!-- ── DATA FLOW ── -->
+<h2 class="section-title">Data Flow</h2>
+
+<div class="flow-data">
+  <div class="flow-row">
+    <div class="flow-box b"><strong>RNA-seq BAMs</strong><br>12 samples (Pre + Post)<br>Modal volume</div>
+    <div class="flow-box g"><strong>STAR index</strong><br>hg38 genome<br>GENCODE v44</div>
+    <div class="flow-box o"><strong>Arriba DB</strong><br>Blacklist + Known fusions<br>Protein domains</div>
+  </div>
+  <div class="flow-arrow-down">&darr;</div>
+  <div class="flow-row">
+    <div class="flow-box g"><strong>STAR Chimeric</strong><br>BAM &rarr; FASTQ &rarr; chimeric BAM<br>--chimOutType WithinBAM</div>
+  </div>
+  <div class="flow-arrow-down">&darr;</div>
+  <div class="flow-row">
+    <div class="flow-box o"><strong>Arriba v2.4.0</strong><br>140 total fusions detected<br>12 fusion TSV files</div>
+  </div>
+  <div class="flow-arrow-down">&darr;</div>
+  <div class="flow-row">
+    <div class="flow-box p"><strong>Confidence Filter</strong><br>High + Medium only<br>140 &rarr; 35 fusions</div>
+  </div>
+  <div class="flow-arrow-down">&darr;</div>
+  <div class="flow-row">
+    <div class="flow-box t"><strong>Pre vs Post Comparison</strong><br>Pre-only: 11 | Post-only: 20 | Both: 5</div>
+  </div>
+  <div class="flow-arrow-down">&darr;</div>
+  <div class="flow-row">
+    <div class="flow-box r"><strong>matplotlib Heatmap</strong><br>35 fusions &times; 12 samples<br>Color by confidence, numbers by reads</div>
+  </div>
+  <div class="flow-arrow-down">&darr;</div>
+  <div class="flow-row">
+    <div class="flow-box dark"><strong>figure_3i_V4.png / .pdf</strong><br>Modal volume + Google Drive</div>
+  </div>
+</div>
+
+<!-- ── INFRASTRUCTURE ── -->
+<h2 class="section-title">Computational Resources</h2>
+
+<table>
+  <tr><th>Step</th><th>Tool</th><th>Version</th><th>Resources</th><th>Time</th></tr>
+  <tr><td>BAM &rarr; FASTQ extraction</td><td>samtools</td><td>1.21</td><td>4 CPU, 64 GB</td><td>~10 min/sample</td></tr>
+  <tr><td>STAR chimeric alignment</td><td>STAR</td><td>2.7.11b</td><td>16 CPU, 64 GB</td><td>~50&ndash;80 min/sample</td></tr>
+  <tr><td>Arriba fusion calling</td><td>Arriba</td><td>2.4.0</td><td>16 CPU, 64 GB</td><td>~5 min/sample</td></tr>
+  <tr><td>Filtering + comparison</td><td>Python/pandas</td><td>3.11</td><td>4 CPU, 8 GB</td><td>&lt;1 min</td></tr>
+  <tr><td>Heatmap generation</td><td>matplotlib</td><td>3.10</td><td>4 CPU, 8 GB</td><td>&lt;1 min</td></tr>
+</table>
+
+<div class="detail-box">
+  <h4>Execution Strategy</h4>
+  <ul>
+    <li><strong>Platform:</strong> Modal cloud computing (containerized Docker)</li>
+    <li><strong>Batching:</strong> 12 samples processed in 3 batches of 4 to avoid timeout</li>
+    <li><strong>Total wall-clock time:</strong> ~3.5 hours (dominated by STAR chimeric re-alignment)</li>
+    <li><strong>Estimated cost:</strong> ~$0.50</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- Fullscreen modal -->
+<div class="img-modal-overlay" id="imgModal" onclick="closeModal()">
+  <img id="imgModalImg" src="" alt="Fullscreen view">
+</div>
+
+<script>
+function openModal(src) {
+  document.getElementById('imgModalImg').src = src;
+  document.getElementById('imgModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('imgModal').classList.remove('active');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+<!-- PER-PATIENT FUSION COVERAGE DIAGRAMS -->
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<h2 class="section-title">Per-Patient Gene Fusion Coverage Diagrams (Figure 3b Style)</h2>
+
+<div class="step-card teal">
+  <div class="step-header">
+    <div class="step-number">7</div>
+    <h2>Fusion Coverage Diagram Generation</h2>
+  </div>
+  <div class="step-body">
+    <p><strong>Purpose:</strong> For each of the 35 high+medium confidence fusions, generate a two-panel coverage diagram showing exon-level read depth for both fusion partner genes, with tumor coverage compared against matched normal (immune) baseline.</p>
+
+    <div class="code-block"><span class="comment"># For each fusion (gene1--gene2):</span>
+
+<span class="comment"># TOP PANEL: Gene1</span>
+Left of breakpoint:  <span class="param">Blue filled area</span> = tumor coverage
+Right of breakpoint: <span class="param">Gray filled area</span> = normal (immune) coverage
+
+<span class="comment"># BOTTOM PANEL: Gene2</span>
+Left of breakpoint:  <span class="param">Gray filled area</span> = normal (immune) coverage
+Right of breakpoint: <span class="param">Red filled area</span>  = tumor coverage
+
+<span class="comment"># Coverage extraction</span>
+<span class="cmd">pysam.count_coverage</span>(BAM, chrom, exon_start, exon_end, quality_threshold=10)
+  &rarr; per-exon mean coverage for tumor BAM and immune BAM
+
+<span class="comment"># Smooth curves</span>
+<span class="cmd">scipy.interpolate.make_interp_spline</span>(x, coverage, k=3)
+  &rarr; smooth area plots (like paper Figure 3b)
+
+<span class="comment"># Layout: A4 landscape, 4 columns x 2 rows per page</span>
+All fusion boxes have <span class="param">uniform X and Y dimensions</span>
+Panels joined vertically (no gap between gene1 and gene2)</div>
+
+    <div class="detail-box">
+      <h4>Data Sources</h4>
+      <ul>
+        <li><strong>Tumor BAMs:</strong> Pre/Post RNA-seq BAMs from STAR alignment (12 samples)</li>
+        <li><strong>Normal BAMs:</strong> Immune sample RNA-seq BAMs (6 patients, separately aligned)</li>
+        <li><strong>Gene annotation:</strong> GENCODE v44 GTF (exon coordinates for each gene)</li>
+        <li><strong>Breakpoint positions:</strong> From Arriba fusion calling output</li>
+      </ul>
+    </div>
+
+    <div class="detail-box">
+      <h4>Diagram Features</h4>
+      <ul>
+        <li><strong style="color:#2563EB">Blue area</strong> = tumor coverage for left partner gene (gene1)</li>
+        <li><strong style="color:#DC2626">Red area</strong> = tumor coverage for right partner gene (gene2)</li>
+        <li><strong style="color:#9CA3AF">Gray area</strong> = matched normal (immune) gene coverage baseline</li>
+        <li><strong>Dashed line</strong> = breakpoint position with chromosome number annotation</li>
+        <li>X-axis normalized to [0,1] for uniform box width across all fusions</li>
+        <li>Smooth spline interpolation (k=3) for publication-quality curves</li>
+      </ul>
+    </div>
+
+    <div class="tool-tags">
+      <span class="tool-tag teal">pysam</span>
+      <span class="tool-tag teal">scipy (spline)</span>
+      <span class="tool-tag teal">matplotlib</span>
+      <span class="tool-tag teal">GENCODE v44</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── FIGURES ── -->
+<h2 class="section-title">Results: Per-Patient Fusion Coverage Diagrams</h2>
+
+<p style="margin-bottom:20px; color:#555;">Each figure shows all high+medium confidence gene fusions detected in a patient's RNA-seq data. The two-panel design (top = gene1, bottom = gene2) enables direct visual comparison of tumor expression (blue/red) against the matched immune baseline (gray), with breakpoint positions marked by dashed lines.</p>
+
+<!-- Figure 2: Patient 1 (1) -->
+<div class="figure-container">
+  <h3>Figure 2. Patient 1 &mdash; Gene Fusion Coverage (Page 1 of 2)</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient1_1.png" alt="Patient 1 Gene Fusion List Page 1" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 2.</strong> Fusion coverage diagrams for Patient 1 (page 1): FOSB&ndash;PPM1N, FOSB&ndash;RTN2, RND1&ndash;DDX23, OAZ1&ndash;UBB, ENSG00000273734&ndash;UBB, FOSB&ndash;UBB, CPED1&ndash;CPED1, OAZ1&ndash;REXO1. Multiple FOSB-involving fusions suggest active rearrangement at the chr19 locus.</div>
+</div>
+
+<!-- Figure 3: Patient 1 (2) -->
+<div class="figure-container">
+  <h3>Figure 3. Patient 1 &mdash; Gene Fusion Coverage (Page 2 of 2)</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient1_2.png" alt="Patient 1 Gene Fusion List Page 2" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 3.</strong> Fusion coverage diagrams for Patient 1 (page 2): ODF2L&ndash;CANX (translocation chr1&ndash;chr5), LSR&ndash;C15orf39 (translocation chr19&ndash;chr15). Both fusions appeared post-treatment only.</div>
+</div>
+
+<!-- Figure 4: Patient 2 -->
+<div class="figure-container">
+  <h3>Figure 4. Patient 2 &mdash; Gene Fusion Coverage</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient2.png" alt="Patient 2 Gene Fusion List" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 4.</strong> Fusion coverage diagrams for Patient 2: RNU6-556P&ndash;SGCD, PRKCI&ndash;IGKJ4 (IG locus translocation, 30 supporting reads), RNU6-1006P&ndash;MYO3B, CIITA&ndash;SNN (MHC-II disruption), DEXI&ndash;SNN, ANO9&ndash;CLK2, RBFOX2&ndash;KRR1. PRKCI&ndash;IGKJ4 shows massive IG locus coverage (~10,000x) at the breakpoint region.</div>
+</div>
+
+<!-- Figure 5: Patient 3 (1) -->
+<div class="figure-container">
+  <h3>Figure 5. Patient 3 &mdash; Gene Fusion Coverage (Page 1 of 2)</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient3_1.png" alt="Patient 3 Gene Fusion List Page 1" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 5.</strong> Fusion coverage diagrams for Patient 3 (page 1): ENSG00000290928&ndash;CRLF3, SUZ12P1&ndash;CRLF3, LINC01507&ndash;NPAP1P4, BCL2L11&ndash;PTMA (BIM disruption &mdash; apoptosis resistance), NCOR2&ndash;UBC, GUSBP1&ndash;NAIP, ENSG00000289707&ndash;ENSG00000254488, TARS3&ndash;TM2D3. BCL2L11&ndash;PTMA shows low BIM coverage contrasted with high PTMA expression.</div>
+</div>
+
+<!-- Figure 6: Patient 3 (2) -->
+<div class="figure-container">
+  <h3>Figure 6. Patient 3 &mdash; Gene Fusion Coverage (Page 2 of 2)</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient3_2.png" alt="Patient 3 Gene Fusion List Page 2" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 6.</strong> Fusion coverage diagrams for Patient 3 (page 2): PLEKHG1&ndash;PNRC1, SF1&ndash;SF3B1 (in-frame splicing factor fusion, LPL/WM relevant), OAZ1&ndash;SF1, SELENON&ndash;ENSG00000290823, ENSG00000274265&ndash;ENSG00000290790. SF1&ndash;SF3B1 shows balanced expression of both splicing factors with a clear breakpoint transition.</div>
+</div>
+
+<!-- Figure 7: Patient 4 -->
+<div class="figure-container">
+  <h3>Figure 7. Patient 4 &mdash; Gene Fusion Coverage</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient4.png" alt="Patient 4 Gene Fusion List" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 7.</strong> Fusion coverage diagram for Patient 4: C11orf58&ndash;VAMP1 (translocation chr11&ndash;chr12). Single high+medium confidence fusion. C11orf58 shows moderate tumor expression (blue) exceeding normal baseline (gray) in early exons.</div>
+</div>
+
+<!-- Figure 8: Patient 8 -->
+<div class="figure-container">
+  <h3>Figure 8. Patient 8 &mdash; Gene Fusion Coverage</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient8.png" alt="Patient 8 Gene Fusion List" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 8.</strong> Fusion coverage diagram for Patient 8: NAPG&ndash;FEZ2 (translocation chr18&ndash;chr2). Single high+medium confidence fusion. FEZ2 shows low tumor-specific expression (red) at the 3&prime; end near the breakpoint.</div>
+</div>
+
+<!-- Figure 9: Patient 9 -->
+<div class="figure-container">
+  <h3>Figure 9. Patient 9 &mdash; Gene Fusion Coverage</h3>
+  <img src="../assets/img/fusion-analysis/fig_patient9.png" alt="Patient 9 Gene Fusion List" onclick="openModal(this.src)">
+  <div class="caption"><strong>Figure 9.</strong> Fusion coverage diagrams for Patient 9 (PD): WDR26&ndash;WDR26 (ITD, persistent Pre+Post), SUPT6H&ndash;SLC4A4 (high confidence, chromatin remodeling), UTRN&ndash;PDSS2, TNRC6B&ndash;EP300 (EP300 tumor suppressor disruption), LINC-PINT&ndash;UBB, NSF&ndash;LRRC37A2. EP300 disruption in a PD patient suggests a potential driver of disease progression.</div>
+</div>
+
+<!-- ── CONCLUSIONS ── -->
+<h2 class="section-title">Conclusions</h2>
+
+<div class="insight">
+  <strong>Summary of Findings:</strong>
+</div>
+
+<div class="step-card">
+  <div class="step-body">
+    <p><strong>1. Fusion Burden Varies by Patient:</strong> Patient 3 harbored the most fusions (13), followed by Patient 1 (10) and Patient 2 (7). Patients 4 and 8 had only 1 fusion each, suggesting lower genomic instability.</p>
+
+    <p><strong>2. Treatment-Induced Fusion Changes:</strong> Comparison of pre- and post-treatment RNA-seq revealed 20 fusions appearing only after treatment (Post-only) versus 11 lost after treatment (Pre-only), with 5 persistent across both timepoints. This asymmetry suggests treatment-induced clonal selection or genomic instability.</p>
+
+    <p><strong>3. Biologically Significant Fusions:</strong></p>
+    <ul style="margin-left:20px; margin-bottom:12px;">
+      <li><strong>BCL2L11&ndash;PTMA (Patient 3, Post-only):</strong> Disruption of the pro-apoptotic BIM protein, a known mechanism of treatment resistance in lymphoma. Coverage diagrams (Figure 5) show dramatically higher PTMA expression compared to disrupted BCL2L11.</li>
+      <li><strong>SF1&ndash;SF3B1 (Patient 3, Post-only):</strong> In-frame fusion of two splicing factors. SF3B1 is recurrently mutated in 5&ndash;10% of WM cases, making this fusion directly relevant to LPL/WM pathogenesis.</li>
+      <li><strong>CIITA&ndash;SNN (Patient 2, Post-only):</strong> CIITA rearrangements result in MHC class II downregulation, enabling immune evasion &mdash; particularly significant in the context of DNA vaccine immunotherapy.</li>
+      <li><strong>TNRC6B&ndash;EP300 (Patient 9, Post-only):</strong> EP300 is a known tumor suppressor in DLBCL and follicular lymphoma. Its disruption in the only PD patient in this RNA-seq cohort is consistent with aggressive disease.</li>
+      <li><strong>PRKCI&ndash;IGKJ4 (Patient 2, Post-only):</strong> IG locus rearrangement with an NF-&kappa;B pathway oncogene, representing a classic B-cell lymphoma translocation mechanism.</li>
+    </ul>
+
+    <p><strong>4. Normal Baseline Comparison:</strong> Using matched immune (normal) RNA-seq as the gray baseline in coverage diagrams enables direct visualization of tumor-specific expression changes at fusion breakpoints. This approach clearly distinguishes constitutive gene expression (present in both tumor and normal) from fusion-driven aberrant expression.</p>
+
+    <p><strong>5. Clinical Correlation:</strong> SD patients (1, 2, 3, 4, 8) showed variable fusion burdens but generally decreased fusion counts post-treatment (except Patient 3). The sole PD patient with RNA-seq data (Patient 9) showed EP300 tumor suppressor disruption post-treatment, consistent with disease progression.</p>
+  </div>
+</div>
+
+<!-- ── DISCUSSION ── -->
+<h2 class="section-title">Discussion</h2>
+
+<div style="background:white; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.06); padding:25px 30px; margin:15px 0; line-height:1.9; font-size:1.02em; color:#333;">
+  <p style="margin-bottom:14px;">Our study shows that the fusion transcript landscape in lymphoplasmacytic lymphoma/Waldenstr&ouml;m macroglobulinemia (LPL/WM) is dynamic following personalized neoantigen vaccination. In paired pre- and post-vaccination bone marrow samples, we observed substantial inter-patient heterogeneity together with a relative enrichment of post-treatment fusion events, indicating that immunotherapy may be accompanied by measurable remodeling of the fusion transcriptome. Several candidate post-treatment fusions involved genes linked to B-cell signalling, apoptosis, RNA splicing, chromatin regulation and antigen presentation, raising the possibility that these events reflect clonal selection, adaptive transcriptional states and immune evasion. These findings suggest that fusion transcript dynamics may represent an additional layer of tumour evolution after vaccination.</p>
+
+  <p style="margin-bottom:14px;">The predominance of post-treatment fusion events is notable, although its biological basis cannot be resolved from the present data alone. Because this analysis was based on bulk RNA-seq, the detected events represent fusion transcripts and do not by themselves establish underlying genomic rearrangements. Some events may therefore reflect altered clonal abundance, transcript expression or detectability rather than newly acquired structural changes. In addition, the cohort size was limited, and the marked patient-to-patient heterogeneity underscores the need for validation in larger longitudinal studies. Thus, the present findings should be regarded as hypothesis-generating, with functional follow-up required to define the biological significance of the candidate fusions.</p>
+
+  <p>An important aspect of this study is that it also serves as a practical demonstration of AI-assisted bioinformatics in translational cancer research. Fusion analysis from RNA-seq typically requires a technically demanding sequence of computational steps, yet AI-guided workflow development enabled these components to be integrated into a reproducible framework that supported both execution and interpretation. Taken together, our findings suggest that personalized neoantigen vaccination is associated with remodeling of the fusion transcript landscape in LPL/WM, while also providing proof of concept that AI-assisted analytical workflows can enable non-specialist investigators to perform reproducible and clinically informative transcriptomic analyses.</p>
+</div>
+
+<!-- ── REFERENCES ── -->
+<h2 class="section-title">References</h2>
+
+<div style="background:white; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.06); padding:25px 30px; margin:15px 0; line-height:2.0; font-size:0.95em; color:#333;">
+  <ol style="margin-left:20px;">
+    <li style="margin-bottom:12px;">Yudina, A. <em>et al.</em> Clinical and analytical validation of a combined RNA and DNA exome assay across a large tumor cohort. <em>Communications Medicine</em> <strong>5</strong>, 236 (2025). <a href="https://doi.org/10.1038/s43856-025-00934-3" target="_blank" rel="noopener" style="color:#1565c0;">https://doi.org/10.1038/s43856-025-00934-3</a></li>
+    <li style="margin-bottom:12px;">Cha, S.C. <em>et al.</em> Personalized neoantigen vaccines as early intervention in untreated patients with lymphoplasmacytic lymphoma: a non-randomized phase 1 trial. <em>Nature Communications</em> <strong>15</strong>, 6608 (2024). <a href="https://doi.org/10.1038/s41467-024-50880-2" target="_blank" rel="noopener" style="color:#1565c0;">https://doi.org/10.1038/s41467-024-50880-2</a></li>
+  </ol>
+</div>
+
+<footer>
+  Gene Fusion Analysis Pipeline Documentation &mdash; LPL/WM Integrated Genomics &mdash; March 2026<br>
+  Analysis performed using Claude Code + Modal Cloud Computing
+</footer>
+
+
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Soungchul Cha</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
